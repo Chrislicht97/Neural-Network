@@ -1,4 +1,5 @@
 import numpy as np
+import random
 
 #empty list
 list1 = list() 
@@ -23,12 +24,15 @@ X = list1
 #X = np.random.randint(1, size=(1,2))
 #X = random.randint(0, 1)
 
-#(between -1 and 1)
-weights = [[0.2, 0.8, -0.5, 1.0],
-           [0.5, -0.91, 0.26, -0.5],
-           [-0.26, -0.27, 0.17, 0.87],
-           [0.3, 0.5, -0.34, -0.5]]
+#(Weights fall between -1 and 1)
+weights = random.uniform(-1, 1)
 
+class Layer_Dense:
+    def __init__(self, n_inputs, n_neurons):
+        self.weights = weights * np.random.randn(n_inputs, n_neurons)
+        self.biases = np.zeros((1, n_neurons))
+    def forward(self, inputs):
+        self.output = np.dot(inputs, self.weights) + self.biases
 
 #output = np.dot(inputs, np.array(weights).T) + biases
 output = np.dot(X, weights)
